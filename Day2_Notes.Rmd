@@ -1,0 +1,142 @@
+---
+title: "Day2_Notes"
+author: "Elli"
+date: "16 3 2021"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Notes during Lecture
+
+<https://docs.google.com/document/d/1XMRyRu4VAb1kXgstZc61qrt0gKggWX5A5OYXpGZI2P8/edit>
+
+Document to ask questions
+
+.. means going out of current directory
+. means in the current directory
+
+difference between list.files("") for directories from working directory
+and ls() which shows environment
+
+use source to load R script
+
+save RData with save(x, y, file = "....")
+
+load RData with load()
+
+setdiff() only looks for elements from 1st vector in 2nd vector!
+
+# Exercises
+## 2.1
+```{r}
+dir.create("./Rcourse_day2")
+dir.create("./Rcourse_day2/Data")
+dir.create("./Rcourse_day2/Scripts")
+setwd("./Rcourse_day2/Scripts")
+getwd()
+
+
+```
+##2.2
+```{r}
+b <- 5
+h <- 4
+save(b, h, file = "./Rcourse_day2/Data/triangle.RData")
+
+
+```
+
+
+## 2.4
+```{r}
+rm(list=ls())
+load("./Rcourse_day2/Data/triangle.RData")
+source("./Rcourse_day2/Scripts/Triangle_area.R")
+A <- getArea(b,h)
+
+
+
+```
+
+## 2.5
+```{r}
+x <- c(1, 2, 200, 6, 80, 23)
+y <- c(100, 50, 5, 30, 1, 20)
+mean(x)
+mean(y)
+var(x)
+var(y)
+cor(x, y, method="spearman")
+
+```
+
+##2.6
+```{r}
+mLen <- c(31, 28, 31, 30,
+31, 30, 31, 31,
+30, 31, 30, 31)
+names(mLen) <- c("Jan", "Feb", "Mar", "Apr",
+"May", "Jun", "Jul", "Aug",
+"Sep", "Oct", "Nov", "Dec")
+table(mLen)
+
+```
+
+##2.7
+```{r}
+x <- sample(1:90, 10)
+y <- sort(x)
+
+```
+
+##2.8
+```{r}
+x <- seq(1, 5)
+y <- seq(3, 7)
+a <- intersect(x,y)
+b <- setdiff(y,x)
+
+```
+
+##2.9
+```{r}
+x <- c(2, 4, 5, 7, 8)
+y <- c(2, 4, 6, 8, 10)
+z <- c(2, 3, 4, 5, 6)
+a <- intersect(intersect(x,y),z)
+b <- setdiff(intersect(x,y),z)
+
+```
+
+## 2.10
+```{r}
+firstNsum <- function(n) {
+a <- seq(1,n)
+return(sum(a))
+}
+
+firstNsum2 <- function(n) {
+n*(n+1)/2
+}
+firstNsum(10)
+firstNsum2(10)
+firstNsum(20)
+firstNsum2(20)
+firstNsum(100)
+firstNsum2(100)
+
+```
+
+## 2.11
+```{r}
+FtoCtemp <- function(F){
+C <- 5/9*(F-32)
+return(C)
+}
+FtoCtemp(47)
+
+```
+No, you're not! very cold!!!
